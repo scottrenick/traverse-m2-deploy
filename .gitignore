@@ -1,0 +1,13 @@
+# Universal ignores
+*.sql
+*.sh
+*.patch
+*.tgz
+*.gz
+*.zip
+*.psd
+*.log
+*.swp
+*.tar
+*.tar.gz
+.git.bak

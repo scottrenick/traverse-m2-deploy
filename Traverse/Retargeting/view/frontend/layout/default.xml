@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block ifconfig="traverse_retargeting/general/enable" class="Traverse\Retargeting\Block\TrInit" name="tr.head" before="-" template="Traverse_Retargeting::tr_head.phtml"/>
+        </referenceBlock>
+        <referenceContainer name="header.container">
+                    <block class="Traverse\Retargeting\Block\TrHeader" name="tr.header.block" template="Traverse_Retargeting::tr_header.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.main" >
+            <block ifconfig="traverse_retargeting/general/enable" class="Traverse\Retargeting\Block\Product\TrAddToCart" name="tr.add.to.cart" before="-" template="Traverse_Retargeting::product/tr_add_to_cart.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

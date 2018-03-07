@@ -1,0 +1,7 @@
+<?php
+$_helper = $this->helper('Traverse\Retargeting\Helper\Data');
+?>
+<?php if ($this->isEnabled()) : ?>
+    <?php echo $this->getInitDataLayerCode(); ?>
+    <?php echo $this->getInitCode(); ?>
+<?php endif; ?>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+	    <tab id="traverse" translate="label" sortOrder="2000" class="tab">
+	       <label>Traverse</label>
+	    </tab>
+	    <section id="traverse_retargeting" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Traverse Email Retargeting</label>
+            <tab>traverse</tab>
+            <resource>Traverse_Retargeting::config_params</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <comment>
+Traverse Email Retargeting drives incremental conversions from prospects who have left your website before completing a transaction and without providing an email address. We do so in partnership with a trusted publisher who has an opt-in relationship with your prospect. An email is sent from the publisher with your creative in the subject line and body of the message, driving the prospect back to your site. We've found that customers who return to your site from our retargeting emails are 2.4x more likely to convert than on their first visit!
+                </comment>
+                <field id="enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Traverse Email Retargeting</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tr_prop_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Traverse Property Id</label>
+                </field>
+                <field id="tr_api_token" translate="label" type="note" sortOrder="1" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Traverse API info link</label>
+                    <frontend_model>Traverse\Retargeting\Block\System\Config\Form\Field\Token</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+

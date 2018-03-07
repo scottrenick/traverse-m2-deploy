@@ -1,0 +1,11 @@
+<?php if ($this->isEnabled()) : ?>
+    <?php $dataLayerObject = $this->getDataLayerAsJson(); ?>
+        <?php if ($dataLayerObject != '[[]]') : ?>
+        <script>
+            var dlObjects = <?php echo $dataLayerObject; ?>;
+            for (var i in dlObjects) {
+                dataLayer.push(dlObjects[i]);
+            }
+        </script>
+        <?php endif; ?>
+<?php endif; ?>
