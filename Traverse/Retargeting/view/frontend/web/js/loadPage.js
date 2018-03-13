@@ -4,6 +4,14 @@ define([
 ], function($) {
     "use strict";
     return function() {
+        var impression = 
+        {
+            type: "impression",
+            eventUrl: window.location.href 
+        }        
+        
+        TraverseRetargeting.event(impression);
+
         var data = $('body').data('trCategory');
         if( data ) {
             // fix the json syntax
