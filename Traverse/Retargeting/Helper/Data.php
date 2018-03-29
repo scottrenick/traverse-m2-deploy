@@ -21,6 +21,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     protected $_registry;
 
     /**
+     * @var \Magento\Framework\View\Element\BlockFactory
+     */
+    protected $_blockFactory;
+
+    /**
      * @var array
      */
     protected $_storeCategories;
@@ -76,6 +81,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Magento\Framework\Registry $registry,
         \Magento\Catalog\Model\ResourceModel\Category $resourceCategory,
+        \Magento\Framework\View\Element\BlockFactory $blockFactory,
         \Magento\Framework\Escaper $escaper,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Checkout\Model\Session $checkoutSession,
@@ -90,6 +96,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
         $this->_options = $this->scopeConfig->getValue('traverse_retargeting', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $this->_registry = $registry;
         $this->_resourceCategory = $resourceCategory;
+        $this->_blockFactory = $blockFactory;
         $this->_storeCategories = [];
         $this->_orderRepository = $orderRepository;
         $this->_escaper = $escaper;
@@ -105,9 +112,39 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     /**
      * @return boolean
      */
-    public function isEnabled()
+    public function isEnabled( $section = null)
+    {
+        $rtn = false;
+        switch( $section ) {
+            case null: $rtn =  $this->isExtensionEnabled(); break;
+            case 'cartAbandon' : $rtn =  $this->isExtensionEnabled() && isSiteAbandonEnabled(); break;
+            case 'siteAbandon' : $rtn =  $this->isExtensionEnabled() && isCartAbandonEnabled(); break;
+        }
+        return $rtn;
+    }
+    
+    /**
+     * @return boolean
+     */
+    public function isExtensionEnabled()
     {
         return $this->_options['general']['enable'];
+    }
+    
+    /**
+     * @return boolean
+     */
+    public function isSiteAbandonEnabled()
+    {
+        return $this->_options['general']['enable_site_abandon'];
+    }
+    
+    /**
+     * @return boolean
+     */
+    public function isCartAbandonEnabled()
+    {
+        return $this->_options['general']['enable_cart_abandon'];
     }
 
     public function getCurrencyCode() {
@@ -144,6 +181,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     public function getEventUrl()
     {
         return $this->_urlInterface->getCurrentUrl();
+    }
+    
+    /**
+     * @return string
+     */
+    public function getCartLink()
+    {
+        return $this->_storeManager->getStore()->getBaseUrl() . 'checkout/cart/';
     }
     
     /**
@@ -203,18 +248,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
         $sess_id = $this->getSessionId();
         $prop_id = $this->getPropertyId();
         $initCode =<<<EOD
-<script>
-    require(
-    ["jquery"], 
-    function($){
-        $( function () {
-            TraverseRetargeting.init({
-              propertyId: "$prop_id",
-              sessionId: "$sess_id"
-            });
-        });
-    });
-</script>
 EOD;
         echo $initCode;
     }

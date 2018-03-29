@@ -1,0 +1,13 @@
+.traverse-menu-tab > .admin__page-nav-title  {
+    background-image:url('images/traverse_logo_icon.png') !important;
+    background-repeat: no-repeat !important;
+    padding-left: 60px;
+}
+
+#traverse_retargeting_general-head {
+    height: 120px;
+    padding-left: 200px !important;
+    background-image:url('images/traverse_logo_sm.png') !important;
+    background-repeat: no-repeat !important;
+}
+

@@ -24,9 +24,11 @@ class LayoutGenerateBlocksAfterObserver implements ObserverInterface {
      */
    public function execute(\Magento\Framework\Event\Observer $observer)
     {
+//file_put_contents('/tmp/datalayer.log', $_SERVER['PHP_SELF'], FILE_APPEND );
 
-//        $dl = $this->_data->getDataLayerScript();
-//        print_r('-------------------------------------------------');
+        $dl = $this->_data->getDataLayerScript();
+        print_r($dl);
+die('====================');
 //        $layout = $observer->getEvent()->getLayout();
 
 /*

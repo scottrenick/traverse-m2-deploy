@@ -5,6 +5,7 @@ define([
     "use strict";
 
     $.widget('mage.clickProduct', {
+
         _create: function() {
             //bind click event of elem id
             this.element.on('click', function(e){
@@ -41,20 +42,20 @@ define([
 				}
 
                 if( isButton && all_selected ) {
-
-					var prod_data = [{'id':all_data.sku,'quantity':1,'price':all_data.price,'currency':all_data.currency,'name':all_data.name,'image':all_data.image,'description':all_data.description,'url':all_data.prod_url}];
-
-                    var cartpayload =
-                    {
-                      type: "cart",
-                      eventUrl: all_data.event_url,
-                      targetUrl: all_data.prod_url,
-                      product: prod_data
-                    };
-                    TraverseRetargeting.event( cartpayload );
+                    setTimeout(function(){
+                        $.ajax({
+                            url: '/traverse/cart/data',
+                            type: 'post',
+                            dataType: 'json',
+                            success: function(res) {
+                                TraverseRetargeting.event( res );
+                            }
+                        });
+                    }, 3000);
                 } 
             });
-        }
+        },
+
     });
     return $.mage.clickProduct;
 });

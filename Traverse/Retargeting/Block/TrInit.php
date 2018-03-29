@@ -38,9 +38,10 @@ class TrInit extends \Traverse\Retargeting\Block\TrBase
      * @return string
      */
     public function getInitDatalayerCode() {
+        $dl = $this->datalayer->getJson();
         $initCode = <<<EOT
 <script>
-    trDataLayer = [];
+    trDataLayer = $dl;
 </script>
 EOT;
         return $initCode;

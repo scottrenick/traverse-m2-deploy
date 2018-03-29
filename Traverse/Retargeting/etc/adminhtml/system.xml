@@ -1,17 +1,29 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
     <system>
-	    <tab id="traverse" translate="label" sortOrder="2000" class="tab">
+	    <tab id="traverse" translate="label" sortOrder="2000" class="tab traverse-menu-tab">
 	       <label>Traverse</label>
 	    </tab>
 	    <section id="traverse_retargeting" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Traverse Email Retargeting</label>
+            <label>Email Retargeting</label>
             <tab>traverse</tab>
             <resource>Traverse_Retargeting::config_params</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Settings</label>
                 <comment>
-Traverse Email Retargeting drives incremental conversions from prospects who have left your website before completing a transaction and without providing an email address. We do so in partnership with a trusted publisher who has an opt-in relationship with your prospect. An email is sent from the publisher with your creative in the subject line and body of the message, driving the prospect back to your site. We've found that customers who return to your site from our retargeting emails are 2.4x more likely to convert than on their first visit!
+&lt;p&gt;
+Traverse is a growth marketing company that’s reimagining email as a powerful channel for acquiring new customers. It’s no secret that email is a highly effective communication tool for marketers to reach their active subscribers, however, our aspirations for email are much bigger. Traverse enables marketers to reach prospects via email who visit your website, but whom you don’t recognize or have an email address for⎼your unauthenticated visitors.
+
+&lt;p&gt;
+With its proprietary data network, Traverse resolves the identity of your unauthenticated prospects, emailing them on your behalf in partnership with a trusted source where an opt-in relationship exists. Trailblazing retailers and e-commerce companies use Traverse’s email retargeting product to drive shopping cart and site abandoners back to their site, where they are 2.4x more likely to convert the second time. When an email is sent to the right person at the right time in their customer journey, a more effective and efficient way to drive sales is achieved.
+
+&lt;p&gt;
+With the new Magento Extension, a revenue share pricing model, and no monthly minimums or setup fees, we’ve designed the product to drive significant incremental conversions for your clients without risk.
+Founded in 2015 and headquartered in San Francisco, the Traverse team has more than 15 years of experience in email marketing, having led companies like Experian and LeadSpend through rapid growth and success. For more information, visit 
+&lt;a href='http://www.traversedata.com'&gt;
+www.traversedata.com.
+&lt;/a&gt;
+
                 </comment>
                 <field id="enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Traverse Email Retargeting</label>
@@ -20,7 +32,15 @@ Traverse Email Retargeting drives incremental conversions from prospects who hav
                 <field id="tr_prop_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Traverse Property Id</label>
                 </field>
-                <field id="tr_api_token" translate="label" type="note" sortOrder="1" showInDefault="0" showInWebsite="1" showInStore="0">
+                <field id="enable_site_abandon" translate="label" type="select" sortOrder="2" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Enable Site Abandonment Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_cart_abandon" translate="label" type="select" sortOrder="3" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Enable Cart Abandonment Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tr_api_token" translate="label" type="note" sortOrder="4" showInDefault="0" showInWebsite="1" showInStore="0">
                     <label>Traverse API info link</label>
                     <frontend_model>Traverse\Retargeting\Block\System\Config\Form\Field\Token</frontend_model>
                 </field>

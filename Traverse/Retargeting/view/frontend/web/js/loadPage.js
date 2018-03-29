@@ -31,5 +31,11 @@ define([
 
             TraverseRetargeting.event(payload);
         } 
+/*
+        var cartinfo = trDataLayer;
+        if( cartinfo.cartChanged ) {
+            TraverseRetargeting.event(cartinfo.current.cartContainer);
+        }
+*/
     }
 });

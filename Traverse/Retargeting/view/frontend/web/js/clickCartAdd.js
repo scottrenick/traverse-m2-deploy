@@ -18,23 +18,18 @@ define([
                     all_selected = false;
                 }
             });
-            
             if( all_selected ) {
-                    var prod_data = $('#tr-data-product').data('trdata')
-                    var event_data = $('#tr-data-event').data('trdata')
-                    var qty = $('.product-add-form #qty').val();
-                    var price = $('.price-final_price .price-wrapper').attr('data-price-amount');
-                    prod_data.quantity = qty;
-                    prod_data.price = price;
+                setTimeout(function(){
+                    $.ajax({
+                        url: '/traverse/cart/data',
+                        type: 'post',
+                        dataType: 'json',
+                        success: function(res) {
+                            TraverseRetargeting.event( res );
+                        }
+                    });
+                }, 3000);
 
-                    var payload =          
-                    {
-                      type: "cart",
-                      eventUrl: event_data.event_url,
-                      targetUrl: event_data.target_url,
-                      product: prod_data
-                    };
-                    TraverseRetargeting.event( payload );
                 } 
             });
         }
