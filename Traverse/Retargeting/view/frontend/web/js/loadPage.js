@@ -1,7 +1,8 @@
 define([
     "jquery",
-    "jquery/ui"
-], function($) {
+    "jquery/ui",
+    "Magento_Checkout/js/view/minicart"
+], function($, minicart) {
     "use strict";
     return function() {
         var impression = 
@@ -32,6 +33,10 @@ define([
             TraverseRetargeting.event(payload);
         } 
 /*
+        minicart.on('contentUpdated', function() {
+            alert('update');
+        });
+
         var cartinfo = trDataLayer;
         if( cartinfo.cartChanged ) {
             TraverseRetargeting.event(cartinfo.current.cartContainer);

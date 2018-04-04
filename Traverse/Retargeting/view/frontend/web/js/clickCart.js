@@ -4,12 +4,13 @@ define([
 ], function($) {
     "use strict";
 
-    $.widget('mage.clickProduct', {
-
+    $.widget('mage.clickCart', {
         _create: function() {
             //bind click event of elem id
             this.element.on('click', function(e){
+
                 // don't send the event if the click is on the Add To Cart button
+/*
                 var all_data = $(this).find('img').data('trData');
                 var isButton = ($(e.target).is(':button') || (e.target.tagName.toLowerCase() == 'span' && $(e.target).parent().is(':button')));
                 var isSwatch = $(e.target).hasClass('swatch-option');
@@ -42,20 +43,21 @@ define([
 				}
 
                 if( isButton && all_selected ) {
+*/
                     setTimeout(function(){
                         $.ajax({
                             url: '/traverse/cart/data',
                             type: 'post',
                             dataType: 'json',
-                            success: function(res) {
-                                TraverseRetargeting.event( res );
+                            success: function(resp) {
+                                TraverseRetargeting.event( resp );
                             }
                         });
                     }, 3000);
-                } 
+ //               } 
             });
         },
 
     });
-    return $.mage.clickProduct;
+    return $.mage.clickCart;
 });

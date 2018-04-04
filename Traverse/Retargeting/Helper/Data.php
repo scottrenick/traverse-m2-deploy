@@ -186,6 +186,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     /**
      * @return string
      */
+    public function getHomeUrl()
+    {
+        return $this->_urlInterface->getBaseUrl();
+    }
+    
+    /**
+     * @return string
+     */
     public function getCartLink()
     {
         return $this->_storeManager->getStore()->getBaseUrl() . 'checkout/cart/';
@@ -196,7 +204,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      */
     public function getPreviousUrl()
     {
-        return $_SERVER['HTTP_REFERER'];
+        $rtn = $this->getHomeUrl();
+        if( array_key_exists( 'HTTP_REFERER', $_SERVER ) ) {
+            $rtn = $_SERVER['HTTP_REFERER'];
+        }
+        return $rtn;
     }
     
     /**
@@ -205,6 +217,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     public function getPropertyId()
     {
         return $this->_options['general']['tr_prop_id'];
+    }
+    
+    /**
+     * @return string
+     */
+    public function enableDebug()
+    {
+        return $this->_options['general']['tr_enable_debug'];
     }
     
     /**
@@ -247,7 +267,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     public function displayInitCode() {
         $sess_id = $this->getSessionId();
         $prop_id = $this->getPropertyId();
+        $debug = $this->enableDebug() ? 'true' : 'false';
         $initCode =<<<EOD
+<script>
+    require(
+    ["jquery"], 
+    function($){
+        $( function () {
+            TraverseRetargeting.init({
+              propertyId: "$prop_id",
+              sessionId: "$sess_id",
+              debug: $debug
+            });
+        });
+    });
+</script>
+
 EOD;
         echo $initCode;
     }
@@ -268,9 +303,13 @@ EOD;
 
     public function getIntegrationLink() {
         $integration = $this->_integration->findByName('Traverse Api');
-        $int_id = $integration->getIntegrationId();
-        $params = array('id'=>$int_id);
-        $url = $this->_backendUrl->getUrl("adminhtml/integration/edit", $params);
+        $url = $this->_backendUrl->getUrl("adminhtml/integration");
+        
+        if(! $integration->isEmpty()) {
+            $int_id = $integration->getIntegrationId();
+            $url = $this->_backendUrl->getUrl("adminhtml/integration/edit/id/$int_id");
+        }
+        
         return '<a href="' . $url . '">Integration Credential</a>';
     }
 

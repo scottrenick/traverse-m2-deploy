@@ -44,6 +44,14 @@ www.traversedata.com.
                     <label>Traverse API info link</label>
                     <frontend_model>Traverse\Retargeting\Block\System\Config\Form\Field\Token</frontend_model>
                 </field>
+                <field id="tr_enable_debug" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Debugging</label>
+                    <comment>
+                        Enabling debugging will allow you to see the data sent to Traverse in your browser's Inspect Console.
+                    </comment>
+
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
     </system>
