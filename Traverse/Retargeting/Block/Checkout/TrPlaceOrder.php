@@ -42,29 +42,6 @@ class TrPlaceOrder extends \Traverse\Retargeting\Block\TrBase
     }
 
     public function displayDataDiv() {
-       //$prod = $this->product->load($this->product->getId());
-/*
-        $event_url = $this->helper->getEventUrl();
-        $prod_url = $prod->getProductUrl();
-        $prod_id = $prod->getId();
-        $prod_sku = $prod->getSku();
-        $prod_name = urlencode($prod->getName());
-        $prod_price = $prod->getFinalPrice();
-        $prod_desc = urlencode($prod->getData('description'));
-        $prod_currency = $this->helper->getCurrencyCode();
-
-        $prod_data = array(
-                    'event_url'=>$event_url,
-                    'prod_url'=>$prod_url,
-                    'id'=>$prod_id,
-                    'sku'=>$prod_sku,
-                    'price'=>$prod_price,
-                    'currency'=>$prod_currency,
-                    'image'=>$this->helper->getUrl(),
-                    'name'=>$prod_name,
-                    'description'=>$prod_desc
-                    );
-*/
 
         $event_url = $this->helper->getEventUrl();
         $cart_url = $this->_storeManager->getStore()->getBaseUrl() . '/checkout/cart';

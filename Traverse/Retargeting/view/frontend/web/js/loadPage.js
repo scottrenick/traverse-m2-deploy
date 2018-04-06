@@ -1,8 +1,7 @@
 define([
     "jquery",
-    "jquery/ui",
-    "Magento_Checkout/js/view/minicart"
-], function($, minicart) {
+    "Traverse_Retargeting/js/minicartDetect"
+], function($, Detect) {
     "use strict";
     return function() {
         var impression = 
@@ -32,15 +31,29 @@ define([
 
             TraverseRetargeting.event(payload);
         } 
+    
+        Detect.test();
 /*
-        minicart.on('contentUpdated', function() {
-            alert('update');
+$( document ).ajaxComplete(function( event, request, settings ) {
+  console.log('-----------');
+  console.log(settings);
+  console.log(settings.data);
+  console.log(settings.type);
+  console.log(settings.url);
+  console.log('-----------');
+});
+
+        var miniCart = $('[data-block=\'minicart\']');
+        miniCart.on('click',function(e){
+            console.log(e.target);
         });
 
-        var cartinfo = trDataLayer;
-        if( cartinfo.cartChanged ) {
-            TraverseRetargeting.event(cartinfo.current.cartContainer);
-        }
+        var updateButton = $('.update-cart-item');
+            console.log(updateButton);
+        updateButton.on('click', function(e) {
+            console.log(e.target);
+        });
 */
+
     }
 });

@@ -36,12 +36,11 @@ class Data extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-/*
         if (!$this->getRequest()->isAjax()) {
             $this->_redirect('/');
             return;
         }
-*/
+
         $cart_obj = null;
         $quote = $this->checkoutSession->getQuote();
 

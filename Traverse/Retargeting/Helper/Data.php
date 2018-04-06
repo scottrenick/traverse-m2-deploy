@@ -237,15 +237,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
         if (!($block = $this->createBlock('Core', 'datalayer.phtml'))) {
             return $script;
         }
-
-//        $this->addDefaultInformation();
-//        $this->addCategoryPageInformation();
-//        $this->addSearchResultPageInformation();
-//        $this->addProductPageInformation();
-//        $this->addCartPageInformation();
-//        $this->addCheckoutInformation();
-//        $this->addOrderInformation();
-
         $html = $block->toHtml();
 
         return $html;
