@@ -8,36 +8,39 @@ define([
     'use strict';
     
     var submitTr = function(cartdata) {
-        var trquotedata = window.checkoutConfig.quoteItemData;
-        var trcustdata = window.checkoutConfig.customerData;
         var eventdata = $('#tr-data-event').data('trdata');
-        var tremail = cartdata.email ? cartdata.email : trcustdata.email
-        
-        var trpayload = 
-        {
-          type: 'purchase',
-          eventUrl: eventdata.event_url,
-          email: tremail,
-          cart: {
-            id: cartdata.cartId,
-            link: eventdata.cart_url
-          }
+        if( typeof eventdata != 'undefined' ) {
+
+            var trquotedata = window.checkoutConfig.quoteItemData;
+            var trcustdata = window.checkoutConfig.customerData;
+            var tremail = cartdata.email ? cartdata.email : trcustdata.email
+            
+            var trpayload = 
+            {
+              type: 'purchase',
+              eventUrl: eventdata.event_url,
+              email: tremail,
+              cart: {
+                id: cartdata.cartId,
+                link: eventdata.cart_url
+              }
+            }
+
+            var products = [];
+            $(trquotedata).each( function(idx,item) {
+                var prod = {'id':item.product.sku, 
+                            'quantity':item.qty, 
+                            'price':item.product.price, 
+                            'currency':eventdata.currency,
+                            'name':item.name,
+                            'image':item.product.thumbnail,
+                            };
+                products.push(prod);
+            });
+
+            trpayload.cart.products = products;
+            TraverseRetargeting.event( trpayload );        
         }
-
-        var products = [];
-        $(trquotedata).each( function(idx,item) {
-            var prod = {'id':item.product.sku, 
-                        'quantity':item.qty, 
-                        'price':item.product.price, 
-                        'currency':eventdata.currency,
-                        'name':item.name,
-                        'image':item.product.thumbnail,
-                        };
-            products.push(prod);
-        });
-
-        trpayload.cart.products = products;
-        TraverseRetargeting.event( trpayload );        
     };
 
     return function (paymentData, messageContainer) {
@@ -58,7 +61,6 @@ define([
             payload.email = quote.guestEmail;
         }
         submitTr(payload); 
-
-      //  return placeOrderService(serviceUrl, payload, messageContainer);
+        return placeOrderService(serviceUrl, payload, messageContainer);
     };
 });

@@ -4,7 +4,7 @@ define([
     "use strict";
 
     var det = {
-        test: function() {
+        run: function() {
             var self = this;
             var response;
             $( document ).ajaxComplete(function( event, request, settings ) {
@@ -16,7 +16,22 @@ define([
                             type: 'post',
                             dataType: 'json',
                             success: function(res) {
-                                TraverseRetargeting.event( res );
+                                if( res == null || typeof res === 'undefined ) {
+                                    var data = $('#tr-data-cart').data();
+                                    if( typeof (data.trdata.cart) != 'undefined' ) {
+                                        var payload =
+                                        {
+                                          type: "click",
+                                          eventUrl: data.trdata.event_url,
+                                          targetUrl: window.checkout.shoppingCartUrl,
+                                          cart: data.trdata.cart
+                                        }
+                                        TraverseRetargeting.event(payload);
+                                    }
+
+                                } else {
+                                    TraverseRetargeting.event( res );
+                                }
                             }
                         });
                     }, 3000);

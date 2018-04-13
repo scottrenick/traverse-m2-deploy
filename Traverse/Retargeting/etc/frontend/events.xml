@@ -1,24 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-        <!-- do we need singleton or new?
-    <event name="controller_action_predispatch">
-        <observer name="tr_controller_action_predispatch" instance="Traverse\Retargeting\Observer\LayoutGenerateBlocksAfterObserver" shared="false" />
-        <observer name="tr_controller_action_predispatch" instance="Traverse\Retargeting\Observer\ControllerActionPredispatchObserver" />
-        <observer name="tr_controller_front_send_response_before" instance="Traverse\Retargeting\Observer\ControllerFrontSendResponseBeforeObserver" />
-    </event>
-
-    <event name="layout_generate_blocks_after">
-        <observer name="tr_layout_generate_blocks_after" instance="Traverse\Retargeting\Observer\LayoutGenerateBlocksAfterObserver" />
-    </event>
-
-    <event name="checkout_cart_add_product_complete">
-        <observer name="tr_cart_add_product_complete" instance="Traverse\Retargeting\Observer\CartAddProductCompleteObserver" />
-    </event>
--->
     <event name="layout_load_before">
         <observer name="tr_layout_load_before" instance="Traverse\Retargeting\Observer\LayoutLoadBeforeObserver" />
     </event>
-<!--
--->
 </config>
 

@@ -8,7 +8,6 @@ define([
         _create: function() {
             //bind click event of elem id
             this.element.on('click', function(e){
-           
             // Don't send to Retargeting if all attributes not selected 
             var selected_options = $('.swatch-attribute-selected-option');
             

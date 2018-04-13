@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
     <referenceContainer name="page.wrapper">
-<block ifconfig="traverse_retargeting/general/enable" class="Traverse\Retargeting\Block\Checkout\TrPlaceOrder" name="tr.place.order" before="-" template="Traverse_Retargeting::checkout/place_order.phtml"/>
+        <block ifconfig="traverse_retargeting/general/enable" class="Traverse\Retargeting\Block\Checkout\TrPlaceOrder" name="tr.place.order" before="-" template="Traverse_Retargeting::checkout/place_order.phtml"/>
     </referenceContainer>
 </layout>

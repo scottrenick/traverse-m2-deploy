@@ -1,8 +1,16 @@
 <!-- Product clicks on category product page -->
 <script type="text/x-magento-init"> { ".product-item-info" : { "Traverse_Retargeting/js/clickProduct": {} } } </script>
 
-<!-- Cart clicks on cart page -->
+<!-- Product clicks on cart page-->
+<script type="text/x-magento-init"> { ".cart .item-info" : { "Traverse_Retargeting/js/clickProduct": {} } } </script>
+<!-- Delete item on cart page -->
 <script type="text/x-magento-init"> { "#shopping-cart-table  .actions-toolbar" : { "Traverse_Retargeting/js/clickCart": {} } } </script>
+<!-- Submit updates on cart page -->
 <script type="text/x-magento-init"> { "#form-validate .action.update" : { "Traverse_Retargeting/js/clickCart": {} } } </script>
 
+
+<!-- Minicart icon click -->
+<script type="text/x-magento-init"> { ".showcart" : { "Traverse_Retargeting/js/clickCartIcon": {} } } </script>
+
+<!-- Impressions, mini-cart handlers on all pages -->
 <script type="text/x-magento-init"> { "*" : { "Traverse_Retargeting/js/loadPage": {} } } </script>
