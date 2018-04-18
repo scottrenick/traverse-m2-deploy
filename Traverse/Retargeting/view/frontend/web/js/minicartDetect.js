@@ -16,7 +16,7 @@ define([
                             type: 'post',
                             dataType: 'json',
                             success: function(res) {
-                                if( res == null || typeof res === 'undefined ) {
+                                if( res == null || typeof res === 'undefined' ) {
                                     var data = $('#tr-data-cart').data();
                                     if( typeof (data.trdata.cart) != 'undefined' ) {
                                         var payload =
