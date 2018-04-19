@@ -9,7 +9,6 @@ define([
         _create: function() {
             //bind click event of elem id
             this.element.on('click', function(e){
-console.log('product click');
                 // don't send the event if the click is on the Add To Cart button
                 var all_data = $(this).find('img').data('trData');
                 var isButton = ($(e.target).is(':button') || (e.target.tagName.toLowerCase() == 'span' && $(e.target).parent().is(':button')));

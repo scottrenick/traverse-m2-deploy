@@ -10,11 +10,12 @@ define([
             //bind click event of elem id
             this.element.on('click', function(e){
                 // don't send the event if the click is on the Add To Cart button
-                var all_data = $(this).find('img').data('trData');
+                var all_data = $(this).closest('.item-info').find('img').data('trData');
                 var isButton = ($(e.target).is(':button') || (e.target.tagName.toLowerCase() == 'span' && $(e.target).parent().is(':button')));
                 var isSwatch = $(e.target).hasClass('swatch-option');
                 if (! isButton && ! isSwatch ) {
-
+                    var prod_name = all_data.name.replace(/\+/g, ' ');
+                    var prod_desc = all_data.description.replace(/\+/g, ' ');
                     var payload = 
                     {
                       type: "click",
@@ -22,10 +23,10 @@ define([
                       targetUrl: all_data.prod_url,
                       product: {
                         id: all_data.sku,
-                        name: all_data.name,
+                        name: prod_name,
                         image: all_data.image,
                         price: all_data.price,
-                        description: all_data.description,
+                        description: prod_desc,
                         url: all_data.prod_url,
                         currency: all_data.currency
                       }

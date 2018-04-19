@@ -27,8 +27,7 @@ class Data extends \Magento\Framework\App\Action\Action
         $this->checkoutSession = $checkoutSession;
         $this->session = $sessionManager;
         $this->cart_obj = [
-            'type' => 'cart',
-            'eventUrl' => $_SERVER['REQUEST_URI'],
+            'type' => 'cart'
         ];
         $this->helper = $helper;
         parent::__construct($context);
@@ -50,21 +49,14 @@ class Data extends \Magento\Framework\App\Action\Action
 
         $id = $quote->getId();
         $items = $quote->getItems();
+        $this->cart_obj['eventUrl'] = $this->helper->getPreviousUrl();
         $this->cart_obj['cart']
              = [
                 'id' => "$id",
                 'link' => $this->helper->getCartLink(),
                 'products' => []
             ];
-
-        foreach( $items as $item ) {
-            $this->cart_obj['cart']['products'][] = [
-                'id' => $item->getSku(),
-                'quantity' => $item->getQty(),
-                'price' => $item->getPrice(),
-                'currency'=> $this->helper->getCurrencyCode()
-            ];
-        }
+        $this->cart_obj['cart']['products'] = $this->helper->getTrCartProductArray($items,false);
 
         $jsonData = json_encode($this->cart_obj);
         $this->getResponse()->setHeader('Content-type', 'application/json');

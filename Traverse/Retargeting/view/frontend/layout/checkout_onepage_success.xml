@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="order.success.additional.info">
+        <block class="Traverse\Retargeting\Block\Checkout\Success"
+               name="traverse.checkout.success"
+               template="Traverse_Retargeting::checkout/success.phtml"
+               after="-">
+        </block>
+    </referenceContainer>
+</body>

@@ -21,4 +21,5 @@
     <preference for="Magento\Catalog\Block\Product\ImageBuilder" type="Traverse\Retargeting\Block\Product\ImageBuilder"/>
     <preference for="Magento\Catalog\Block\Category\View" type="Traverse\Retargeting\Block\Category\View"/>
     <preference for="Magento\Checkout\CustomerData\Cart" type="Traverse\Retargeting\Model\Checkout\CustomerData\Cart"/>
+    <preference for="Magento\Checkout\Block\Success" type="Traverse\Retargeting\Block\Checkout\Success"/>
 </config>

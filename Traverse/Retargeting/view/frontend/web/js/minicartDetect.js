@@ -18,13 +18,15 @@ define([
                             success: function(res) {
                                 if( res == null || typeof res === 'undefined' ) {
                                     var data = $('#tr-data-cart').data();
+                                    var cart_data = data.trdata.cart;
+                                    cart_data['products'] = [];
                                     if( typeof (data.trdata.cart) != 'undefined' ) {
                                         var payload =
                                         {
-                                          type: "click",
+                                          type: "cart",
                                           eventUrl: data.trdata.event_url,
-                                          targetUrl: window.checkout.shoppingCartUrl,
-                                          cart: data.trdata.cart
+                                  //        targetUrl: window.checkout.shoppingCartUrl,
+                                          cart: cart_data
                                         }
                                         TraverseRetargeting.event(payload);
                                     }

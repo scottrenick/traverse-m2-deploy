@@ -75,7 +75,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      */
     protected $_urlInterface;
     
-
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
@@ -152,6 +151,33 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     }
 
     public function getTrProductData($product) {
+        return json_encode($this->getTrProductArray($product));
+    }
+
+    public function getTrCartProductArray($items, $encode = true) {
+           $rtn = [];
+           foreach( $items as $item ) {
+                $prod_id = $item->getProduct()->getId();
+                $prod = $item->getProduct()->load($prod_id);
+                $name = $prod->getName();
+                $name = $encode ? urlencode($name) : $name;
+                $desc = $prod->getDescription();
+                $desc = $encode ? urlencode($desc) : $desc;
+                $rtn[] = [
+                    'id' => $item->getSku(),
+                    'quantity' => $item->getQty(),
+                    'price' => $item->getPrice(),
+                    'currency'=> $this->getCurrencyCode(),
+                    'name' => $name,
+                    'description' => $desc,
+                    'url' => $item->getProduct()->getProductUrl()
+                ];
+            }
+
+            return $rtn;
+    }
+
+    public function getTrProductArray($product) {
         $event_url = $this->getEventUrl();
         $prod_id = $product->getId();
         $prod_sku = $product->getSku();
@@ -164,7 +190,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
 
 		$data = ['event_url'=>$event_url, 'id'=>$prod_id, 'sku'=>$prod_sku, 'prod_url'=>$prod_url, 'price'=>$prod_price, 'currency'=>$prod_currency,'name'=>$prod_name,'image'=>$prod_image,'description'=>$prod_desc];
 
-        return json_encode($data);
+        return $data;
     }
     
     /**
@@ -281,8 +307,7 @@ EOD;
     public function getJsonDataInsert($array) {
         $jsonData = json_encode($array);
         $dataIns = 'data-tr-data=' . $jsonData;
-        $code = $dataIns;
-        return $code;
+        return $dataIns;
     }
 
     public function displayJsonDataDiv($array, $divid = 'tr-data-container') {

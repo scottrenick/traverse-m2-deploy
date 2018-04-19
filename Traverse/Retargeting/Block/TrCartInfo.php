@@ -44,17 +44,24 @@ class TrCartInfo extends \Magento\Framework\View\Element\Template
                     'products' => []
                 ];
             $this->cartObj['event_url'] = $this->helper->getEventUrl();
-
+            $this->cartObj['cart']['products'] = $this->helper->getTrCartProductArray($items);
+/*
             foreach( $items as $item ) {
                 $this->cartObj['cart']['products'][] = [
+                    'currency'=> $this->helper->getCurrencyCode(),
+                    'description' => urlencode($item->getProduct()->getDescription()),
                     'id' => $item->getSku(),
+                    'name' => urlencode($item->getProduct()->getName()),
                     'quantity' => $item->getQty(),
                     'price' => $item->getPrice(),
-                    'currency'=> $this->helper->getCurrencyCode()
+                    'url' => $item->getProduct()->getProductUrl()
                 ];
             }
+*/
             $data = $this->cartObj;
         }
+//var_dump($data);
+//die('---------------');
 
         $this->helper->displayJsonDataDiv($data, 'tr-data-cart');
     }

@@ -8,7 +8,6 @@ define([
         _create: function() {
             //bind click event of elem id
             this.element.on('click', function(e){
-
                 setTimeout(function(){
                     $.ajax({
                         url: '/traverse/cart/data',
