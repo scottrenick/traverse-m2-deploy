@@ -1,19 +1,25 @@
 {
-  "name": "traverse/retargeting",
-  "description": "Traverse Email Retargeting",
-  "type": "magento2-module",
-  "version": "100.0.0",
-  "license": [
-    "OSL-3.0",
-    "AFL-3.0"
-  ],
-  "require": {
-    "magento/framework": "~1.0.0"
-  },
-  "autoload": {
-    "files": [ "registration.php" ],
-    "psr-4": {
-      "Traverse\\Retargeting\\": ""
-    }
-  }
+    "name": "traverse/retargeting",
+        "description": "Traverse Email Retargeting",
+        "type": "magento2-module",
+        "version": "1.0.0",
+        "license": [
+            "OSL-3.0",
+            "AFL-3.0"
+        ],
+        "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/scottrenick/traverse-m2-deploy"
+        }
+        ],
+        "require": {
+            "magento/framework": "100.0.20 - 101.0"
+        },
+        "autoload": {
+            "files": [ "registration.php" ],
+            "psr-4": {
+                "Traverse\\Retargeting\\": ""
+            }
+        }
 }

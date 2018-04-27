@@ -5,4 +5,4 @@ http://devdocs.magento.com/guides/v2.0/extension-dev-guide/package/package_modul
 command to zip Traverse Retargetting for deployment:
 
 cd Traverse/Retargeting
-zip -r Retargetting.zip Retargeting
+zip -r Retargetting.zip ./*
