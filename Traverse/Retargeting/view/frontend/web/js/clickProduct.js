@@ -10,7 +10,7 @@ define([
             //bind click event of elem id
             this.element.on('click', function(e){
                 // don't send the event if the click is on the Add To Cart button
-                var all_data = $(this).closest('.item-info').find('img').data('trData');
+                var all_data = $(this).closest('.product-item-info').find('img').data('trData');
                 var isButton = ($(e.target).is(':button') || (e.target.tagName.toLowerCase() == 'span' && $(e.target).parent().is(':button')));
                 var isSwatch = $(e.target).hasClass('swatch-option');
                 if (! isButton && ! isSwatch ) {

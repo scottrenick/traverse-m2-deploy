@@ -11,7 +11,7 @@ class QuoteSaveAfterPlugin
      */
     protected $_helper;
 
-    public function __construct(Traverse\Retargeting\Helper\Data $helper)
+    public function __construct(\Traverse\Retargeting\Helper\Data $helper)
     {
         $this->_helper = $helper;
     }

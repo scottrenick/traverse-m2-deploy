@@ -19,8 +19,8 @@ define([
                                 if( res == null || typeof res === 'undefined' ) {
                                     var data = $('#tr-data-cart').data();
                                     var cart_data = data.trdata.cart;
-                                    cart_data['products'] = [];
                                     if( typeof (data.trdata.cart) != 'undefined' ) {
+                                        cart_data['products'] = [];
                                         var payload =
                                         {
                                           type: "cart",
