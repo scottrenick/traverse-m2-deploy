@@ -163,6 +163,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
                 $name = $encode ? urlencode($name) : $name;
                 $desc = $prod->getDescription();
                 $desc = $encode ? urlencode($desc) : $desc;
+                $image_path = $prod->getImage();
+                $image_url = $this->getProductMediaUrl() . $image_path;
+
                 $rtn[] = [
                     'id' => $item->getSku(),
                     'quantity' => $item->getQty(),
@@ -170,7 +173,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
                     'currency'=> $this->getCurrencyCode(),
                     'name' => $name,
                     'description' => $desc,
-                    'url' => $item->getProduct()->getProductUrl()
+                    'url' => $prod->getProductUrl(),
+                    'image' => $image_url
                 ];
             }
 
@@ -192,6 +196,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
 
         return $data;
     }
+    
+    /**
+     * @return string
+     */
+    public function getProductMediaUrl()
+    {
+        return $this ->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA ) . "catalog/product";
+    }
+    
     
     /**
      * @return string
