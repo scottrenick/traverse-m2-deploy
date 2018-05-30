@@ -25,7 +25,6 @@ define([
                                         {
                                           type: "cart",
                                           eventUrl: data.trdata.event_url,
-                                  //        targetUrl: window.checkout.shoppingCartUrl,
                                           cart: cart_data
                                         }
                                         TraverseRetargeting.event(payload);
